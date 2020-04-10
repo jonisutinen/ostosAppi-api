@@ -10,6 +10,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ostosAppi_api.Data;
+using Microsoft.EntityFrameworkCore;
+using MySql.Data.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore;
+
 
 namespace ostosAppi_api
 {
@@ -26,6 +31,9 @@ namespace ostosAppi_api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<MvcShoppingListContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("ConnectionString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
