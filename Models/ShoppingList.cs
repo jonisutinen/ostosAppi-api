@@ -22,6 +22,7 @@ namespace ostosAppi_api.Models
     public class ShoppingItem
     {
         public int Id { get; set; }
+        public int ShoppingListId { get; set; }
         public string Name { get; set; }
         public double Amount { get; set; }
         public string AmountUnit { get; set; }
