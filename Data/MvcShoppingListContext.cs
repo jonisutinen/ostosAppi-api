@@ -37,7 +37,18 @@ namespace ostosAppi_api.Data
                         Created = DateTime.Now,
                         CreatedBy = "DBInit",
                         Updated = DateTime.Now,
-                        UpdatedBy = "DBInit",
+                        UpdatedBy = "DBInit"
+                    },
+                    new ShoppingList
+                    {
+                        Id = 2,
+                        Name = "Ostokset2",
+                        Store = "City-market",
+                        IsDone = false,
+                        Created = DateTime.Now,
+                        CreatedBy = "DBInit",
+                        Updated = DateTime.Now,
+                        UpdatedBy = "DBInit"
                     });
                 a.OwnsMany(b => b.ShoppingItem).HasData(
                     new ShoppingItem
@@ -69,6 +80,36 @@ namespace ostosAppi_api.Data
                         Price = 0,
                         IsCollected = false,
                         ShoppingListId = 1
+                    },
+                    new ShoppingItem
+                    {
+                        Id = 5,
+                        Name = "Naudan sisäpaisti",
+                        Amount = 1.5,
+                        AmountUnit = "kg",
+                        Price = 0,
+                        IsCollected = false,
+                        ShoppingListId = 2
+                    },
+                    new ShoppingItem
+                    {
+                        Id = 6,
+                        Name = "Timjami",
+                        Amount = 1,
+                        AmountUnit = "kpl",
+                        Price = 0,
+                        IsCollected = false,
+                        ShoppingListId = 2
+                    },
+                    new ShoppingItem
+                    {
+                        Id = 7,
+                        Name = "Sitruuna",
+                        Amount = 2,
+                        AmountUnit = "kpl",
+                        Price = 0,
+                        IsCollected = false,
+                        ShoppingListId = 2
                     });
             });
         }
