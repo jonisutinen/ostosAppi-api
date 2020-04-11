@@ -14,7 +14,7 @@ using ostosAppi_api.Data;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore;
-
+using Microsoft.Extensions.Options;
 
 namespace ostosAppi_api
 {
@@ -34,6 +34,15 @@ namespace ostosAppi_api
 
             services.AddDbContext<MvcShoppingListContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("ConnectionString")));
+            services.AddRouting(r => r.SuppressCheckForUnhandledSecurityMetadata = true);
+
+
+            services.AddMvc();
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +63,16 @@ namespace ostosAppi_api
             {
                 endpoints.MapControllers();
             });
+            //app.UseCors(
+            //    options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
+            //);
+            app.UseCors(options => options.AllowAnyOrigin());
+            app.Use((context, next) =>
+            {
+                context.Items["__CorsMiddlewareInvoked"] = true;
+                return next();
+            });
+
         }
     }
 }
